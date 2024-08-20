@@ -11,7 +11,7 @@ To Start Database
 ```bash
 docker compose up -d
 ```
-(open localhost port 5050 [pgadmin)
+(open localhost port 5050 [pgadmin])
 
 To Stop Database
 ```bash
