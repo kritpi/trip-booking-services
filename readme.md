@@ -1,17 +1,17 @@
 ## Getting Started
 
-Run the development server
+Run the development server (With Nodemon)
 
 ```bash
 npm run dev
 ```
-(port 8000)
+(open localhost port 8000)
 
 To Start Database
 ```bash
 docker compose up -d
 ```
-(port 5050)
+(open localhost port 5050 [pgadmin)
 
 To Stop Database
 ```bash
