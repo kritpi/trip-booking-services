@@ -11,7 +11,14 @@ To Start Database
 ```bash
 docker compose up -d
 ```
-(open localhost port 5050 [pgadmin])
+View Table
+```
+npx prisma studio
+```
+Database Migration
+```
+npx prisma migrate dev
+```
 
 To Stop Database
 ```bash
