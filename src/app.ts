@@ -1,5 +1,7 @@
 import express, { Request, Response } from "express";
 import taskRoutes from "./routes/task";
+import { Prisma, PrismaClient } from "@prisma/client";
+
 const app = express();
 const port = process.env.PORT || 8000;
 
