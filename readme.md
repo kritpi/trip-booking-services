@@ -31,15 +31,14 @@ This is the backend of the Trip Booking web application. It's a Node.js server u
 	```bash
 	$ cp .env.example .env 
 	```
-5. Run the application :
-5.1 Start the web server : 
-```bash
-$ npm start
-``` 
-5.2 Start the DB server :
-```bash
-$ docker compose up -d
-```
+5. Start the web server : 
+	```bash
+	$ npm start
+	``` 
+6. Start the DB server :
+	```bash
+	$ docker compose up -d
+	```
 	
 ## Migration
 To map data model into database schema, use the `prisma migrate` CLI Command
