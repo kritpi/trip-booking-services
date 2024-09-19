@@ -1,18 +1,18 @@
-import { Task } from "@prisma/client";
 import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 export class TaskService {
-  getAllTask = async () => {
-    const tasks = await prisma.task.findMany();
-    return tasks;
-  };
-
   createTask = async (task) => {
     const newTask = await prisma.task.create({
       data: task,
     });
   };
+  
+  getAllTask = async () => {
+    const tasks = await prisma.task.findMany();
+    return tasks;
+  };
+
 
   findTaskById = async (id) => {
     const task = await prisma.task.findUnique({

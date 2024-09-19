@@ -1,8 +1,18 @@
-import { json, Request, Response } from "express";
+import { Request, Response } from "express";
 import { TaskService } from "../service/task";
 
 const taskService = new TaskService();
 export class TaskController {
+  createTask = async (req: Request, res: Response) => {
+    try {
+      const data = req.body;
+      await taskService.createTask(data);
+      res.status(201).send("Task Created");
+    } catch (error) {
+      res.status(400).send("Cannot Create Task");
+    }
+  };
+
   getAllTask = async (req: Request, res: Response) => {
     try {
       const tasks = await taskService.getAllTask();
@@ -20,16 +30,6 @@ export class TaskController {
       res.status(200).json(task);
     } catch (error) {
       res.status(404).send("Task Not Found");
-    }
-  };
-
-  createTask = async (req: Request, res: Response) => {
-    try {
-      const data = req.body;
-      await taskService.createTask(data);
-      res.status(201).send("Task Created");
-    } catch (error) {
-      res.status(400).send("Cannot Create Task");
     }
   };
 
