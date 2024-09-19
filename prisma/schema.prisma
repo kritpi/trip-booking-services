@@ -14,3 +14,28 @@ model Task {
   status      Boolean
   createAt    DateTime @default(now())
 }
+
+enum Role {
+  Admin
+  User
+}
+
+enum Gender {
+  Male
+  Female
+  Other
+}
+
+model User {
+  id          String   @id @default(uuid())
+  username    String
+  name        String
+  lastName    String
+  gender      Gender   @default(Other)
+  email       String   @unique
+  phoneNumber String
+  birthDate   DateTime
+  password    String
+  role        Role     @default(User)
+  createdAt   DateTime @default(now())
+}
