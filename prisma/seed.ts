@@ -8,7 +8,7 @@ async function main() {
             name: 'Admin',
             lastName: 'Admin',
             gender: Gender.Other,
-            email: 'admin@trip-booking',
+            email: 'admin@admin.com',
             phoneNumber: '123456789',
             birthDate: '2021-01-01',
             username: 'admin',
