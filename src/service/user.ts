@@ -61,6 +61,31 @@ const findUserById = async (id: string) => {
   });
   return user;
 };
+//Edit user only name, lastname, gender, phone
+const editUser = async (
+  id: string,
+  name?: string,
+  lastName?: string,
+  gender?: Gender,
+  phoneNumber?: string,
+  birthDate?: string,
+  username?: string,
+) => {
+  const updatedUser = await prisma.user.update({
+    where: {
+      id,
+    },
+    data: {
+      ...(name && { name }),
+      ...(lastName && { lastName }),
+      ...(gender && { gender }),      
+      ...(phoneNumber && { phoneNumber }),
+      ...(birthDate && { birthDate }),
+      ...(username && { username }),      
+    },
+  });
+  return updatedUser;
+};
 
 export default {
   findUserByEmail,
@@ -68,4 +93,5 @@ export default {
   deleteUser,
   getAllUsers,
   findUserById,
+  editUser
 };

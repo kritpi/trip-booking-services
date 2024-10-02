@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import UserServcie from "../service/user";
+import UserService from "../service/user";
 import userAuth from "../service/userAuth";
 
 export const createUser = async (req: Request, res: Response) => {
@@ -12,7 +12,7 @@ export const createUser = async (req: Request, res: Response) => {
         message: "Email is already exist",
       });
     } else {
-      await UserServcie.createUser(
+      await UserService.createUser(
         user.name,
         user.lastName,
         user.gender,
@@ -29,12 +29,27 @@ export const createUser = async (req: Request, res: Response) => {
   }
 };
 
-export const getAllUsers = async (req: Request, res: Response) => {
-  //get all users
+export const getUser = async (req: Request, res: Response) => {
+  const userId = req.params.id;
+  try {
+    const user = await UserService.findUserById(userId);
+    res.status(200).json(user);
+  } catch (error) {
+    res.status(404).send(error); 
+  }
 };
 
-export const getUser = async (req: Request, res: Response) => {
-  //get user
+export const editUser = async (req: Request, res: Response) => {
+  const user = req.body;
+  try {
+    // await UserService.editUser()
+  } catch (error) {
+    res.status(404).send(error);
+  }
+}
+
+export const getAllUsers = async (req: Request, res: Response) => {
+  //get all users
 };
 
 export const deleteUser = async (req: Request, res: Response) => {
