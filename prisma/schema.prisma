@@ -37,5 +37,46 @@ model User {
   birthDate   DateTime
   password    String
   role        Role     @default(User)
-  createdAt   DateTime @default(now())
+  created_at   DateTime @default(now())
+
+  members      Member[]
+  requirements Requirement[]
+}
+
+model Member {
+  id      String @id @default(uuid())
+  name    String
+  gender  Gender @default(Other)
+  age     String
+  allergy String
+  dietary String
+
+  owner             User                @relation(fields: [owner_id], references: [id])
+  owner_id          String
+  requirementMember RequirementMember[]
+}
+
+model Requirement {
+  id                String   @id @default(uuid())
+  start_date_time     DateTime
+  end_date_time       DateTime
+  city              String
+  arrival_location   String
+  departure_location String
+  room_type          String
+  breakfast_included Boolean
+  trip_description   String
+  create_at          DateTime @default(now())
+
+  owner             User                @relation(fields: [owner_id], references: [id])
+  owner_id          String
+  requirementMember RequirementMember[]
+}
+
+model RequirementMember {
+  id             String      @id @default(uuid())
+  member         Member      @relation(fields: [member_id], references: [id])
+  member_id      String
+  requirement    Requirement @relation(fields: [requirement_id], references: [id])
+  requirement_id String
 }

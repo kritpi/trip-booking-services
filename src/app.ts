@@ -1,7 +1,6 @@
 import express, { Request, Response } from "express";
+import setUpRouter from "./routes/index";
 import taskRoutes from "./routes/task";
-import userAuthRoutes from "./routes/userAuth";
-import userRoutes from "./routes/user";
 import { Prisma, PrismaClient } from "@prisma/client";
 import cors from "cors"
 
@@ -19,9 +18,11 @@ app.use(express.json());
 app.use(cors(corsOptions))
 
 app.use("/tasks", taskRoutes);
-app.use("/auth", userAuthRoutes);
-app.use("/user", userRoutes);
+
+setUpRouter(app);
 
 app.listen(port, () => {
   console.log(`Running On Port ${port}`);
 });
+
+export default app;
