@@ -108,10 +108,32 @@ const getRequirementById = async (requirementId: string) => {
       id: requirementId,
     },
     include: {
-      requirementMember: true,
+      requirementMember: {
+        include: {
+          member: true, // Assuming 'member' is the relation name in requirementMember model
+        },
+      },
     },
   });
-  return requirement;
+
+  const formattedRequirements = {
+    requirement: {
+      id: requirement.id,
+      start_date_time: requirement.start_date_time,
+      end_date_time: requirement.end_date_time,
+      city: requirement.city,
+      arrival_location: requirement.arrival_location,
+      departure_location: requirement.departure_location,
+      room_type: requirement.room_type,
+      breakfast_included: requirement.breakfast_included,
+      trip_description: requirement.trip_description,
+      owner_id: requirement.owner_id,
+    },
+    memberList: requirement.requirementMember.map((member) => member.member),
+  };
+  
+
+  return formattedRequirements;
 };
 
 export default {

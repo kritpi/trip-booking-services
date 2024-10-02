@@ -6,7 +6,7 @@ import {
   refreshToken,
   register,
 } from "../controllers/userAuth";
-import { createUser, getUser } from "../controllers/user";
+import { createUser, editUser, getUser } from "../controllers/user";
 import { createMember, getAllUserMembers, deleteMemberById, getMemberById, getMembersByRequirementId } from "../controllers/member";
 import { createRequirement, getAllRequirements, getRequirementByUserId, getRequirementById } from "../controllers/requirement";
 
@@ -22,6 +22,7 @@ const apiRouter = (): Router => {
   //Users
   api.post("/user/sign-up", createUser);
   api.get("/user/:id", getUser);
+  api.put("/user/:id", editUser);
 
   //Members
   api.get("/user/member/:id", getAllUserMembers);
