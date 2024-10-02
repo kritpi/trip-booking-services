@@ -1,4 +1,4 @@
-import { PrismaClient, Role, Gender } from "@prisma/client";
+import { PrismaClient, Role, Gender, User } from "@prisma/client";
 import passwordEncoder from "../utils/passwordEncoder";
 
 const prisma = new PrismaClient();
@@ -62,30 +62,38 @@ const findUserById = async (id: string) => {
   return user;
 };
 //Edit user only name, lastname, gender, phone
-const editUser = async (
-  id: string,
-  name?: string,
-  lastName?: string,
-  gender?: Gender,
-  phoneNumber?: string,
-  birthDate?: string,
-  username?: string,
-) => {
+// const editUser = async (
+//   id: string,
+//   name?: string,
+//   lastName?: string,
+//   gender?: Gender,
+//   phoneNumber?: string,
+//   birthDate?: string,
+//   username?: string,
+// ) => {
+//   const updatedUser = await prisma.user.update({
+//     where: {
+//       id,
+//     },
+//     data: {
+//       ...(name && { name }),
+//       ...(lastName && { lastName }),
+//       ...(gender && { gender }),      
+//       ...(phoneNumber && { phoneNumber }),
+//       ...(birthDate && { birthDate }),
+//       ...(username && { username }),      
+//     },
+//   });
+//   return updatedUser;
+// };
+const editUser = async (userId: string, user: User) => {
   const updatedUser = await prisma.user.update({
     where: {
-      id,
+      id: userId,
     },
-    data: {
-      ...(name && { name }),
-      ...(lastName && { lastName }),
-      ...(gender && { gender }),      
-      ...(phoneNumber && { phoneNumber }),
-      ...(birthDate && { birthDate }),
-      ...(username && { username }),      
-    },
-  });
-  return updatedUser;
-};
+    data: user,
+  })
+}
 
 export default {
   findUserByEmail,

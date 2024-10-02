@@ -40,9 +40,11 @@ export const getUser = async (req: Request, res: Response) => {
 };
 
 export const editUser = async (req: Request, res: Response) => {
+  const userId = req.params.id;
   const user = req.body;
   try {
-    // await UserService.editUser()
+    await UserService.editUser(userId, user);
+    res.status(200).send("Edited")
   } catch (error) {
     res.status(404).send(error);
   }
