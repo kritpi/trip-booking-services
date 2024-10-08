@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import requirementServices from "../service/requirement";
+import tripServices from "../service/trip";
 
 export const createRequirement = async (req: Request, res: Response) => {
   const newRequirement = req.body;
@@ -9,9 +10,11 @@ export const createRequirement = async (req: Request, res: Response) => {
   newRequirement.requirement.memberList.map((member) => {
     memberList.push(member);
   });
-
+  console.log(typeof(requirement.uuid));
+  
   try {
     await requirementServices.createRequirement(
+      requirement.uuid,
       requirement.startDate,
       requirement.endDate,
       requirement.city,
@@ -23,10 +26,27 @@ export const createRequirement = async (req: Request, res: Response) => {
       userId,
       memberList
     );
+    await tripServices.createTrip(
+      requirement.startDate,
+      requirement.endDate,
+      "",
+      "",
+      "",
+      requirement.memberList.length,
+      "",
+      "",
+      requirement.breakfast,
+      0.0,
+      "Creating Tour",
+      "",
+      requirement.uuid      
+    );
     res.status(201).send("Requirement Created");
   } catch (error) {
     res.status(401).send(error);
-    console.log(error);
+    res.send("Fail")
+    console.log(error);    
+    
   }
 };
 

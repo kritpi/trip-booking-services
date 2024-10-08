@@ -67,10 +67,12 @@ model Requirement {
   breakfast_included Boolean
   trip_description   String
   create_at          DateTime @default(now())
+  //status
 
   owner             User                @relation(fields: [owner_id], references: [id])
   owner_id          String
   requirementMember RequirementMember[]
+  trip              Trip[]
 }
 
 model RequirementMember {
@@ -80,3 +82,35 @@ model RequirementMember {
   requirement    Requirement @relation(fields: [requirement_id], references: [id])
   requirement_id String
 }
+
+model Trip {
+  id String @id @default(uuid())
+  start_date_time DateTime
+  end_date_time DateTime
+  city String
+  arrival_location String
+  departure_location String
+  members Int
+  hotel String
+  room_type String
+  breakfast_included Boolean
+  price Float
+  status String
+  comment String
+
+  requirement_id String
+  requirement Requirement @relation(fields: [requirement_id], references: [id])
+  locations Location[]
+}
+
+model Location {
+  id String @id @default(uuid())
+  location String
+  description String
+  start_date_time DateTime
+  end_date_time DateTime
+
+  trip_id String
+  trip Trip @relation(fields: [trip_id], references: [id])
+}
+

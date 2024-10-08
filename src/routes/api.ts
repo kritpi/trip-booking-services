@@ -9,6 +9,8 @@ import {
 import { createUser, editUser, getUser } from "../controllers/user";
 import { createMember, getAllUserMembers, deleteMemberById, getMemberById, getMembersByRequirementId } from "../controllers/member";
 import { createRequirement, getAllRequirements, getRequirementByUserId, getRequirementById } from "../controllers/requirement";
+import { getTripByRequirementId, editTrip } from "../controllers/trip";
+import { createLocation, deleteLocation, getLocationByTripId } from "../controllers/location";
 
 const apiRouter = (): Router => {
   const api = Router();
@@ -36,6 +38,15 @@ const apiRouter = (): Router => {
   api.get("/user/requirement/user/:id", getRequirementByUserId);
   api.get("/user/requirement/:id", getRequirementById);
   api.get("/admin/requirements", getAllRequirements);
+
+  //Trips
+  api.get("/user/requirement/trip/:id", getTripByRequirementId);
+  api.put("/user/trip/:id", editTrip)
+
+  //Locations
+  api.post("/admin/trip/location/:id", createLocation);
+  api.delete("/admin/trip/location/:id", deleteLocation);
+  api.get("/admin/trip/location-list/:id", getLocationByTripId);
 
   return api;
 };

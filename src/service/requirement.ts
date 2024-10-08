@@ -4,6 +4,7 @@ const prisma = new PrismaClient();
 
 const createRequirement = async (
   //Write requirement data to requirement table
+  id: string,
   start_date_time: string,
   end_date_time: string,
   city: string,
@@ -17,6 +18,7 @@ const createRequirement = async (
 ) => {
   const requirement = await prisma.requirement.create({
     data: {
+      id,
       start_date_time,
       end_date_time,
       city,
