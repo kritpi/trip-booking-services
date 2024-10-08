@@ -71,6 +71,37 @@ CREATE TABLE "RequirementMember" (
     CONSTRAINT "RequirementMember_pkey" PRIMARY KEY ("id")
 );
 
+-- CreateTable
+CREATE TABLE "Trip" (
+    "id" TEXT NOT NULL,
+    "start_date_time" TIMESTAMP(3) NOT NULL,
+    "end_date_time" TIMESTAMP(3) NOT NULL,
+    "city" TEXT NOT NULL,
+    "arrival_location" TEXT NOT NULL,
+    "departure_location" TEXT NOT NULL,
+    "members" INTEGER NOT NULL,
+    "hotel" TEXT NOT NULL,
+    "room_type" TEXT NOT NULL,
+    "breakfast_included" BOOLEAN NOT NULL,
+    "price" DOUBLE PRECISION NOT NULL,
+    "status" TEXT NOT NULL,
+    "requirement_id" TEXT NOT NULL,
+
+    CONSTRAINT "Trip_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "Location" (
+    "id" TEXT NOT NULL,
+    "location" TEXT NOT NULL,
+    "description" TEXT NOT NULL,
+    "start_date_time" TIMESTAMP(3) NOT NULL,
+    "end_date_time" TIMESTAMP(3) NOT NULL,
+    "trip_id" TEXT NOT NULL,
+
+    CONSTRAINT "Location_pkey" PRIMARY KEY ("id")
+);
+
 -- CreateIndex
 CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
 
@@ -85,3 +116,9 @@ ALTER TABLE "RequirementMember" ADD CONSTRAINT "RequirementMember_member_id_fkey
 
 -- AddForeignKey
 ALTER TABLE "RequirementMember" ADD CONSTRAINT "RequirementMember_requirement_id_fkey" FOREIGN KEY ("requirement_id") REFERENCES "Requirement"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Trip" ADD CONSTRAINT "Trip_requirement_id_fkey" FOREIGN KEY ("requirement_id") REFERENCES "Requirement"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Location" ADD CONSTRAINT "Location_trip_id_fkey" FOREIGN KEY ("trip_id") REFERENCES "Trip"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
