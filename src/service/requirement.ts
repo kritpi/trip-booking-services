@@ -75,13 +75,47 @@ const getAllRequirements = async () => {
   return formattedRequirements;
 };
 
+// const getAllRequirementsByUserId = async (userId: string) => {
+//   const requirements = await prisma.requirement.findMany({
+//     where: {
+//       owner_id: userId,
+//     },
+//     include: {
+//       requirementMember: true,      
+//     },
+//   });
+
+//   const formattedRequirements = requirements.map((requirement) => ({
+//     requirement: {
+//       id: requirement.id,
+//       start_date_time: requirement.start_date_time,
+//       end_date_time: requirement.end_date_time,
+//       city: requirement.city,
+//       arrival_location: requirement.arrival_location,
+//       departure_location: requirement.departure_location,
+//       room_type: requirement.room_type,
+//       breakfast_included: requirement.breakfast_included,
+//       trip_description: requirement.trip_description,
+//       owner_id: requirement.owner_id,
+//     },
+//     memberList: requirement.requirementMember.map((member) => member.member_id),
+//   }));
+
+//   return formattedRequirements;
+// };
+
 const getAllRequirementsByUserId = async (userId: string) => {
   const requirements = await prisma.requirement.findMany({
     where: {
       owner_id: userId,
     },
     include: {
-      requirementMember: true,
+      requirementMember: true,      
+      trip: {
+        select: {
+          status: true, // Ensure 'status' is selected from the trip relation
+        },
+      },
     },
   });
 
@@ -97,12 +131,14 @@ const getAllRequirementsByUserId = async (userId: string) => {
       breakfast_included: requirement.breakfast_included,
       trip_description: requirement.trip_description,
       owner_id: requirement.owner_id,
+      status: requirement.trip?.[0]?.status
     },
     memberList: requirement.requirementMember.map((member) => member.member_id),
   }));
 
   return formattedRequirements;
 };
+
 
 const getRequirementById = async (requirementId: string) => {
   const requirement = await prisma.requirement.findUnique({
