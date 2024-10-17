@@ -1,7 +1,7 @@
-import { PrismaClient, Role, Gender, User } from "@prisma/client";
+import { Role, Gender, User } from "@prisma/client";
 import passwordEncoder from "../utils/passwordEncoder";
 
-const prisma = new PrismaClient();
+import { prisma } from "../utils/prismaClient";
 
 const findUserByEmail = async (email: string) => {
   const user = await prisma.user.findUnique({
