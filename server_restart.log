@@ -1,0 +1,20 @@
+
+> trip-booking-services@1.0.0 dev /Users/milliamp/Documents/Study/y3t3/SA/sa-project/trip-booking-services
+> nodemon - exec 'ts-node' src/app.ts
+
+[33m[nodemon] 3.1.4[39m
+[33m[nodemon] to restart at any time, enter `rs`[39m
+[33m[nodemon] watching path(s): src/**/*[39m
+[33m[nodemon] watching extensions: ts[39m
+[32m[nodemon] starting `ts-node ./src/app.ts - exec ts-node src/app.ts`[39m
+Running On Port 8000
+invoiceId f7a3567c-b560-4b4f-96e9-d523fbf04e7d
+req.params { id: 'f7a3567c-b560-4b4f-96e9-d523fbf04e7d' }
+prisma:info Starting a postgresql pool with 17 connections.
+prisma:query SELECT "public"."Invoice"."id", "public"."Invoice"."pay_date_time", "public"."Invoice"."pay_price", "public"."Invoice"."pay_check_deposit", "public"."Invoice"."pay_check_remaining", "public"."Invoice"."user_id", "public"."Invoice"."trip_id" FROM "public"."Invoice" WHERE ("public"."Invoice"."id" = $1 AND 1=1) LIMIT $2 OFFSET $3
+invoiceId f7a3567c-b560-4b4f-96e9-d523fbf04e7d
+req.params { id: 'f7a3567c-b560-4b4f-96e9-d523fbf04e7d' }
+prisma:query SELECT "public"."Invoice"."id", "public"."Invoice"."pay_date_time", "public"."Invoice"."pay_price", "public"."Invoice"."pay_check_deposit", "public"."Invoice"."pay_check_remaining", "public"."Invoice"."user_id", "public"."Invoice"."trip_id" FROM "public"."Invoice" WHERE ("public"."Invoice"."id" = $1 AND 1=1) LIMIT $2 OFFSET $3
+invoiceId f7a3567c-b560-4b4f-96e9-d523fbf04e7d
+req.params { id: 'f7a3567c-b560-4b4f-96e9-d523fbf04e7d' }
+prisma:query SELECT "public"."Invoice"."id", "public"."Invoice"."pay_date_time", "public"."Invoice"."pay_price", "public"."Invoice"."pay_check_deposit", "public"."Invoice"."pay_check_remaining", "public"."Invoice"."user_id", "public"."Invoice"."trip_id" FROM "public"."Invoice" WHERE ("public"."Invoice"."id" = $1 AND 1=1) LIMIT $2 OFFSET $3
