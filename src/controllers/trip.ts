@@ -11,6 +11,16 @@ export const getTripByRequirementId = async (req: Request, res: Response) => {
   }
 };
 
+export const getTripByTripId = async (req: Request, res: Response) => {
+  const tripId = req.params.id;
+  try {
+    const trip = await tripServices.getTripByTripId(tripId);
+    res.status(200).json(trip);
+  } catch (error) {
+    res.status(404).send(error);
+  }
+};
+
 export const editTrip = async (req: Request, res: Response) => {
   const tripId = req.params.id;
   const editedTrip = req.body;

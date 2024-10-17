@@ -4,8 +4,6 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { JwtPayload } from "../schema/JwtSchema";
 
-const prisma = new PrismaClient();
-
 const isUserExist = async (email: string) => {
   const user = await UserService.findUserByEmail(email);
   return !!user; //return as boolean

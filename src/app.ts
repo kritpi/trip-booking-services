@@ -1,6 +1,5 @@
 import express, { Request, Response } from "express";
 import setUpRouter from "./routes/index";
-import taskRoutes from "./routes/task";
 import { Prisma, PrismaClient } from "@prisma/client";
 import cors from "cors"
 
@@ -17,7 +16,6 @@ const corsOptions = {
 app.use(express.json());
 app.use(cors(corsOptions))
 
-app.use("/tasks", taskRoutes);
 
 setUpRouter(app);
 

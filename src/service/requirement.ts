@@ -1,6 +1,4 @@
-import { PrismaClient } from "@prisma/client";
-
-const prisma = new PrismaClient();
+import { prisma } from "../utils/prismaClient";
 
 const createRequirement = async (
   //Write requirement data to requirement table
@@ -74,35 +72,6 @@ const getAllRequirements = async () => {
 
   return formattedRequirements;
 };
-
-// const getAllRequirementsByUserId = async (userId: string) => {
-//   const requirements = await prisma.requirement.findMany({
-//     where: {
-//       owner_id: userId,
-//     },
-//     include: {
-//       requirementMember: true,      
-//     },
-//   });
-
-//   const formattedRequirements = requirements.map((requirement) => ({
-//     requirement: {
-//       id: requirement.id,
-//       start_date_time: requirement.start_date_time,
-//       end_date_time: requirement.end_date_time,
-//       city: requirement.city,
-//       arrival_location: requirement.arrival_location,
-//       departure_location: requirement.departure_location,
-//       room_type: requirement.room_type,
-//       breakfast_included: requirement.breakfast_included,
-//       trip_description: requirement.trip_description,
-//       owner_id: requirement.owner_id,
-//     },
-//     memberList: requirement.requirementMember.map((member) => member.member_id),
-//   }));
-
-//   return formattedRequirements;
-// };
 
 const getAllRequirementsByUserId = async (userId: string) => {
   const requirements = await prisma.requirement.findMany({

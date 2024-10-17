@@ -1,6 +1,5 @@
-import { Gender, Member, PrismaClient } from "@prisma/client";
-
-const prisma = new PrismaClient();
+import { Gender, Member } from "@prisma/client";
+import { prisma } from "../utils/prismaClient";
 
 const createMember = async (
   id: string,

@@ -41,6 +41,7 @@ model User {
 
   members      Member[]
   requirements Requirement[]
+  invoices     Invoice[]
 }
 
 model Member {
@@ -101,6 +102,7 @@ model Trip {
   requirement_id String
   requirement Requirement @relation(fields: [requirement_id], references: [id])
   locations Location[]
+  invoices Invoice[]
 }
 
 model Location {
@@ -114,3 +116,15 @@ model Location {
   trip Trip @relation(fields: [trip_id], references: [id])
 }
 
+model Invoice {
+  id String @id @default(uuid())
+  pay_date_time DateTime
+  pay_price Float
+  pay_check_deposit Boolean
+  pay_check_remaining Boolean
+
+  user_id String
+  user User @relation(fields: [user_id], references: [id])
+  trip_id String
+  trip Trip @relation(fields: [trip_id], references: [id])
+}

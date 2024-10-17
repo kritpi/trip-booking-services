@@ -7,10 +7,35 @@ import {
   register,
 } from "../controllers/userAuth";
 import { createUser, editUser, getUser } from "../controllers/user";
-import { createMember, getAllUserMembers, deleteMemberById, getMemberById, getMembersByRequirementId } from "../controllers/member";
-import { createRequirement, getAllRequirements, getRequirementByUserId, getRequirementById } from "../controllers/requirement";
-import { getTripByRequirementId, editTrip } from "../controllers/trip";
-import { createLocation, deleteLocation, getLocationByTripId } from "../controllers/location";
+import {
+  createMember,
+  getAllUserMembers,
+  deleteMemberById,
+  getMemberById,
+  getMembersByRequirementId,
+} from "../controllers/member";
+import {
+  createRequirement,
+  getAllRequirements,
+  getRequirementByUserId,
+  getRequirementById,
+} from "../controllers/requirement";
+import {
+  getTripByRequirementId,
+  editTrip,
+  getTripByTripId,
+} from "../controllers/trip";
+import {
+  createLocation,
+  deleteLocation,
+  getLocationByTripId,
+} from "../controllers/location";
+import {
+  createInvoice,
+  editInvoice,
+  getInvoice,
+  deleteInvoice,
+} from "../controllers/invoice";
 
 const apiRouter = (): Router => {
   const api = Router();
@@ -29,7 +54,7 @@ const apiRouter = (): Router => {
   //Members
   api.get("/user/member/:id", getAllUserMembers);
   api.post("/user/member", createMember);
-  api.delete("/user/member/:id", deleteMemberById); 
+  api.delete("/user/member/:id", deleteMemberById);
   api.get("/user/member/:id", getMemberById);
   api.get("/user/member/requirement/:id", getMembersByRequirementId);
 
@@ -41,12 +66,19 @@ const apiRouter = (): Router => {
 
   //Trips
   api.get("/user/requirement/trip/:id", getTripByRequirementId);
-  api.put("/user/trip/:id", editTrip)
+  api.put("/user/trip/:id", editTrip);
 
   //Locations
   api.post("/admin/trip/location/:id", createLocation);
   api.delete("/admin/trip/location/:id", deleteLocation);
   api.get("/admin/trip/location-list/:id", getLocationByTripId);
+  api.get("/user/trip/:id", getTripByTripId);
+
+  //Invoices
+  api.get("/user/invoice/:id", getInvoice);
+  api.post("/user/invoice", createInvoice);
+  api.put("/user/invoice/edit/:id", editInvoice);
+  api.delete("/user/invoice/:id", deleteInvoice);
 
   return api;
 };

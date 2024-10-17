@@ -1,6 +1,4 @@
-import { PrismaClient, Trip } from "@prisma/client";
-import requirement from "./requirement";
-const prisma = new PrismaClient();
+import { prisma } from "../utils/prismaClient";
 
 const createTrip = async (
   start_date_time: string,
@@ -40,6 +38,15 @@ const createTrip = async (
   });
 };
 
+const getTripByTripId = async (tripId: string) => {
+  const trip = await prisma.trip.findUnique({
+    where: {
+      id: tripId,
+    }
+  })
+  return trip;
+}
+
 const getTripByRequirementId = async (requirement_id: string) => {
   const trip = await prisma.trip.findFirst({
     where: {
@@ -73,8 +80,9 @@ const editTrip = async (tripId: string, editTrip: any) => {
   });
 };
 
-export default {
+export default {  
   createTrip,
+  getTripByTripId,
   getTripByRequirementId,
   editTrip,
 };
