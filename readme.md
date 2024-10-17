@@ -46,4 +46,13 @@ To map data model into database schema, use the `prisma migrate` CLI Command
 $ npx prisma migrate dev
 ```
 
-
+## To get SQL Command
+1. To start server
+	```bash
+	$ /watch_log.sh
+ 	```
+2. While server running
+	```bash
+ 	$ grep '^prisma:query' server_restart.log >> sql_log.txt
+ 	```
+ to grep all sql command generate by prisma:query to sql_log.txt 
