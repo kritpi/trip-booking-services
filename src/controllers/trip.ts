@@ -33,3 +33,18 @@ export const editTrip = async (req: Request, res: Response) => {
     res.status(404).send;
   }
 };
+
+export const patchTrip = async (req: Request, res: Response) => {
+  const tripId = req.params.id;
+  const patched = req.body;
+
+  console.log("Trip Id", tripId);
+  console.log("Patched Trip", patched);
+
+  try {
+    await tripServices.patchTrip(tripId, patched);
+    res.status(200).send("Trip Patched");
+  } catch (error) {
+    res.status(400).send(error);
+  }
+};

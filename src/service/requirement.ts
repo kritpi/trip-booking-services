@@ -51,6 +51,11 @@ const getAllRequirements = async () => {
           member: true, // Assuming 'member' is the relation name in requirementMember model
         },
       },
+      trip: {
+        select: {
+          status: true, // Ensure 'status' is selected from the trip relation
+        },
+      },
     },
   });
 
@@ -66,6 +71,7 @@ const getAllRequirements = async () => {
       breakfast_included: requirement.breakfast_included,
       trip_description: requirement.trip_description,
       owner_id: requirement.owner_id,
+      status: requirement.trip?.[0]?.status
     },
     memberList: requirement.requirementMember.map((member) => member.member),
   }));

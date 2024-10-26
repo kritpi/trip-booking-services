@@ -23,7 +23,7 @@ enum Role {
 enum Gender {
   Male
   Female
-  Other
+  Other 
 }
 
 model User {
@@ -118,8 +118,8 @@ model Location {
 
 model Invoice {
   id String @id @default(uuid())
-  pay_date_time DateTime
-  pay_price Float
+  pay_date_time DateTime?
+  pay_price Float?
   pay_check_deposit Boolean
   pay_check_remaining Boolean
 

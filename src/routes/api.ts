@@ -24,6 +24,7 @@ import {
   getTripByRequirementId,
   editTrip,
   getTripByTripId,
+  patchTrip
 } from "../controllers/trip";
 import {
   createLocation,
@@ -35,6 +36,7 @@ import {
   editInvoice,
   getInvoice,
   deleteInvoice,
+  getInvoiceByTripId
 } from "../controllers/invoice";
 
 const apiRouter = (): Router => {
@@ -66,16 +68,18 @@ const apiRouter = (): Router => {
 
   //Trips
   api.get("/user/requirement/trip/:id", getTripByRequirementId);
+  api.get("/user/trip/:id", getTripByTripId);
   api.put("/user/trip/:id", editTrip);
+  api.patch("/user/trip/:id", patchTrip);
 
   //Locations
   api.post("/admin/trip/location/:id", createLocation);
   api.delete("/admin/trip/location/:id", deleteLocation);
   api.get("/admin/trip/location-list/:id", getLocationByTripId);
-  api.get("/user/trip/:id", getTripByTripId);
 
   //Invoices
   api.get("/user/invoice/:id", getInvoice);
+  api.get("/user/invoice/trip/:id", getInvoiceByTripId);
   api.post("/user/invoice", createInvoice);
   api.put("/user/invoice/edit/:id", editInvoice);
   api.delete("/user/invoice/:id", deleteInvoice);
