@@ -42,6 +42,15 @@ const getInvoice = async (invoiceId: string) => {
   return invoice;
 }
 
+const getInvoiceByTripId = async (tripId: string) => {
+  const invoice = await prisma.invoice.findFirst({
+    where: {
+      trip_id: tripId,
+    }
+  })
+  return invoice
+}
+
 const editInvoice = async (invoiceId: string, invoice) => {
   console.log("DB Invoice Id", invoiceId);
   console.log("DB Invoice", invoice);
@@ -69,6 +78,7 @@ const deleteInvoice = async (invoiceId: string) => {
 export default {
   createInvoice,
   getInvoice,
+  getInvoiceByTripId,
   editInvoice,
   deleteInvoice
 }

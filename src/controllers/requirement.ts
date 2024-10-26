@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import requirementServices from "../service/requirement";
 import tripServices from "../service/trip";
+import invoiceServices from "../service/invoice"
 
 export const createRequirement = async (req: Request, res: Response) => {
   const newRequirement = req.body;
@@ -37,7 +38,7 @@ export const createRequirement = async (req: Request, res: Response) => {
       "",
       requirement.breakfast,
       0.0,
-      "Creating Tour",
+      "Creating tour",
       "",
       requirement.uuid      
     );

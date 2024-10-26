@@ -3,7 +3,7 @@ import invoiceServices from "../service/invoice";
 
 export const createInvoice = async (req: Request, res: Response) => {
   const invoice = req.body;
-  console.log("invoice", invoice);
+  console.log("invoice ja", invoice);
 
   try {
     await invoiceServices.createInvoice(
@@ -33,14 +33,28 @@ export const getInvoice = async (req: Request, res: Response) => {
   }
 };
 
+export const getInvoiceByTripId = async (req: Request, res: Response) => {
+  const tripId = req.params.id;
+  console.log("Trip Id", tripId);
+  try {
+    const invoice = await invoiceServices.getInvoiceByTripId(tripId);
+    res.status(200).json(invoice);
+  } catch (error) {
+    res.status(404).send(error);
+  }
+}
+
 export const editInvoice = async (req: Request, res: Response) => {
   const invoiceId = req.params.id;
   const editInvoice = req.body;
+  console.log("Edit's Invoice Id", invoiceId);
+  console.log("Edited Invoice", editInvoice);
+  
   try {
     await invoiceServices.editInvoice(invoiceId, editInvoice);
     res.status(200).send("invoice edited");
   } catch (error) {
-    res.status;
+    res.status(400).send(error);
   }
 };
 

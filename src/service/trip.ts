@@ -1,4 +1,6 @@
 import { prisma } from "../utils/prismaClient";
+import invoiceServices from "./invoice"
+import requirementServices from "./requirement"
 
 const createTrip = async (
   start_date_time: string,
@@ -80,9 +82,19 @@ const editTrip = async (tripId: string, editTrip: any) => {
   });
 };
 
+const patchTrip = async (tripId: string, patchData: any) => {
+  await prisma.trip.update({
+    where: {
+      id: tripId
+    },
+    data: patchData
+  });
+}
+
 export default {  
   createTrip,
   getTripByTripId,
   getTripByRequirementId,
   editTrip,
+  patchTrip
 };
