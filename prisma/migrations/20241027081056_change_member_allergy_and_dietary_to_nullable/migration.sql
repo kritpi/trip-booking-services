@@ -1,0 +1,3 @@
+-- AlterTable
+ALTER TABLE "Member" ALTER COLUMN "allergy" DROP NOT NULL,
+ALTER COLUMN "dietary" DROP NOT NULL;

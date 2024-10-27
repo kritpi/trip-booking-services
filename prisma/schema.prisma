@@ -49,8 +49,8 @@ model Member {
   name    String
   gender  Gender @default(Other)
   age     String
-  allergy String
-  dietary String
+  allergy String?
+  dietary String?
 
   owner             User                @relation(fields: [owner_id], references: [id])
   owner_id          String
