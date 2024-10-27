@@ -45,16 +45,23 @@ cron.schedule("0 0 * * *", async () => {
       const createdAt = new Date(trip.create_at);
       const daysPending = differenceInDays(new Date(), createdAt);
       
-      if (daysPending > 10) {
+      if (trip.status == "Wait for confirm" && daysPending > 10) {
         await prisma.trip.update({
           where: { id: trip.id },
           data: {
             status: 'Canceled',
           }
         });
-        
         console.log(`Trip ${trip.id} expired after ${daysPending} days`);
+      }else if(trip.status == "Wait for payment" && daysPending > 20){
+        await prisma.trip.update({
+          where: { id: trip.id },
+          data: {
+            status: 'Canceled',
+          }
+        });
       }
+        console.log(`Trip ${trip.id} expired after ${daysPending} days`);
     }
     console.log('Cron job completed');
     
