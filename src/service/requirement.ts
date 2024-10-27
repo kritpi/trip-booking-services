@@ -148,6 +148,7 @@ const getRequirementById = async (requirementId: string) => {
       breakfast_included: requirement.breakfast_included,
       trip_description: requirement.trip_description,
       owner_id: requirement.owner_id,
+      create_at: requirement.create_at,
     },
     memberList: requirement.requirementMember.map((member) => member.member),
   };
