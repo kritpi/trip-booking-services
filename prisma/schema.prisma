@@ -7,14 +7,6 @@ generator client {
   provider = "prisma-client-js"
 }
 
-model Task {
-  id          Int      @id @default(autoincrement())
-  title       String
-  description String?
-  status      Boolean
-  createAt    DateTime @default(now())
-}
-
 enum Role {
   Admin
   User

@@ -60,7 +60,7 @@ const getAllRequirements = async () => {
         select: {
           username: true, // Ensure 'username' is selected from the owner relation
         },
-      }
+      },
     },
   });
 
@@ -78,7 +78,7 @@ const getAllRequirements = async () => {
       owner_id: requirement.owner_id,
       create_at: requirement.create_at,
       status: requirement.trip?.[0]?.status,
-      owner: requirement.owner?.username
+      owner: requirement.owner?.username,
     },
     memberList: requirement.requirementMember.map((member) => member.member),
   }));
@@ -92,7 +92,7 @@ const getAllRequirementsByUserId = async (userId: string) => {
       owner_id: userId,
     },
     include: {
-      requirementMember: true,      
+      requirementMember: true,
       trip: {
         select: {
           status: true, // Ensure 'status' is selected from the trip relation
@@ -113,14 +113,13 @@ const getAllRequirementsByUserId = async (userId: string) => {
       breakfast_included: requirement.breakfast_included,
       trip_description: requirement.trip_description,
       owner_id: requirement.owner_id,
-      status: requirement.trip?.[0]?.status
+      status: requirement.trip?.[0]?.status,
     },
     memberList: requirement.requirementMember.map((member) => member.member_id),
   }));
 
   return formattedRequirements;
 };
-
 
 const getRequirementById = async (requirementId: string) => {
   const requirement = await prisma.requirement.findUnique({
@@ -152,7 +151,6 @@ const getRequirementById = async (requirementId: string) => {
     },
     memberList: requirement.requirementMember.map((member) => member.member),
   };
-  
 
   return formattedRequirements;
 };
